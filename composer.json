@@ -1,0 +1,17 @@
+{
+	"name": "calevans/phpfromthecli",
+	"minimum-stability": "dev", 
+	"description": "",
+    "license": "MIT",
+    "type": "project",
+    "require": {
+		"symfony/console": ">=1.0.0",
+        "zendframework/zendservice-twitter": ">=2.0.0",
+		"vlucas/phpdotenv": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+				  "phpfromthecli": "app/"},
+ 		"classmap": [ "src/"]				  
+	}
+}
