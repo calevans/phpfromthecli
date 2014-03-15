@@ -16,7 +16,6 @@ class SearchCommand extends Command
 
     protected $english   = false;
     protected $count     = null;
-    protected $term      = '#PHP';
     protected $onlyNames = false;
 
     protected function configure()
@@ -24,7 +23,7 @@ class SearchCommand extends Command
         $definition = [new InputOption('english', 'e', InputOption::VALUE_NONE, 'If set, only English tweets will be displayed.'),
                        new InputOption('only-names', 'o', InputOption::VALUE_NONE, 'If set, only twitter names will be displayed.'),
                        new InputOption('count', 'c', InputArgument::OPTIONAL, 'The number of tweets to return.'),
-                       new InputOption('search-term', 's', InputArgument::OPTIONAL, 'The term to search for. Default is #PHP')];
+                       new InputOption('search-term', 's', InputOption::VALUE_REQUIRED, 'The term to search for. Default is #PHP',"#PHP")];
 
         $this->setName('search')
              ->setDescription('Search Twitter')
@@ -49,11 +48,6 @@ class SearchCommand extends Command
         $this->onlyNames = $input->getOption('only-names');
         $this->count     = (!is_null($input->getOption('count'))?$input->getOption('count'):null);
 
-        if (!is_null($input->getOption('search-term'))) {
-            $this->term = $input->getOption('search-term');
-        }
-        
-
         /*
          * Get the connection to twitter
          */
@@ -77,7 +71,7 @@ class SearchCommand extends Command
         /*
          * Do the deed
          */
-        $response = $twitter->searchTweets($this->term,$searchOptions);
+        $response = $twitter->searchTweets($input->getOption('search-term'),$searchOptions);
 
 
         /*
