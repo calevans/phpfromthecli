@@ -42,12 +42,12 @@ class TestCommand extends Command
 
 		$twitter  = new \ZendService\Twitter\Twitter($twitterOptions);
 		$response = $twitter->account->verifyCredentials();
-		$output = $response->toValue();
+		$value = $response->toValue();
 
-		if (isset($output->errors) && is_array($output->errors)) {
-			$this->writeln($output->errors[0]->code . ':' . $output->errors[0]->message);
+		if (isset($value->errors) && is_array($value->errors)) {
+			$this->writeln($value->errors[0]->code . ':' . $value->errors[0]->message);
 		} else { 
-			$this->writeln('Credentials succeeded for ' . $output->screen_name);
+			$this->writeln('Credentials succeeded for ' . $value->screen_name);
 		}
 
 		$this->writeln('Done');

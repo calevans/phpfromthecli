@@ -39,7 +39,7 @@ class SearchCommand extends Command
     {
 
         /*
-         * Housekeeping & Initilization
+         * Housekeeping & Initialization
          */
         $this->output    = $output;
         $this->setupOutput();
